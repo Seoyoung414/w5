@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Beer?</title>
+</head>
+<body>
+	<style> body{margin: 0; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: sans-serif;}</style>
+
+<div id="text1">Beer?</div>
+<input type="range" id="myslider" min="0" max="800" value="0">
+		<button id="button1">Cheers</button>
+<div class="img-container">
+		<img src="beer1.png" id="beer1">
+		<img src="beer2.png" id="beer2">
+	</div>
+
+
+<style>
+#beer1, #beer2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;}
+.img-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 800px;</style>
+
+
+
+<script>
+    const button1 = document.getElementById("button1");
+    const myslider = document.getElementById("myslider");
+    const beer1 = document.getElementById("beer1");
+    const beer2 = document.getElementById("beer2");
+
+		beer2.style.clipPath = "inset(800px 0px 0px 0px)";
+	let beer = "no";
+button1.onclick = function() {
+			if (beer === "no") {
+				button1.innerText = "More?";
+				beer = "yes";
+				beer1.src = "beer3.png";
+				beer2.src = "beer3.png"
+			} else if (beer === "yes") {
+				button1.innerText = "Cheers";
+				beer = "no";
+				beer1.src = "beer1.png";
+				beer2.src = "beer2.png"
+				myslider.value = 0;
+        beer2.style.clipPath = "inset(800px 0px 0px 0px)";
+			}
+		};
+
+
+myslider.oninput = function() {
+			let containerHeight = 800;
+		let cutTop = containerHeight - Number(myslider.value);
+			beer2.style.clipPath = `inset(${cutTop}px 0px 0px 0px)`;
+		};
+</script>
+
+
+<style>
+	#beer1{height: 800px;}
+	#beer2{height: 800px;}
+	#beer3{height: 800px;}
+</style>
+</body>
+</html>
